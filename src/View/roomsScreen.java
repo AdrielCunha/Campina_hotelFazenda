@@ -5,6 +5,9 @@
  */
 package View;
 
+import java.awt.*;
+import javax.swing.*;
+
 /**
  *
  * @author cunha
@@ -18,6 +21,29 @@ public class roomsScreen extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
     }
+    
+    public void Checkbox(String status){
+        
+        cbLivre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/checkDesmarcado.png")));
+        cbOcupado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/checkDesmarcado.png")));
+        cbReservado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/checkDesmarcado.png")));
+        cbLimpeza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/checkDesmarcado.png")));        
+        
+        switch(status){
+            case "livre":
+                cbLivre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/checkMarcado.png")));
+                break;
+            case "ocupado":
+                cbOcupado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/checkMarcado.png")));
+                break;
+            case "reservado":
+                cbReservado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/checkMarcado.png")));
+                break;
+            case "limpeza":
+                cbLimpeza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/checkMarcado.png")));
+                break;
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,13 +56,15 @@ public class roomsScreen extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        boxLivres = new javax.swing.JCheckBox();
-        boxOcupados = new javax.swing.JCheckBox();
-        boxLimpeza = new javax.swing.JCheckBox();
-        boxReservados = new javax.swing.JCheckBox();
         jPanel5 = new javax.swing.JPanel();
         jTextField2 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        cbLivre = new javax.swing.JLabel();
+        cbOcupado = new javax.swing.JLabel();
+        cbReservado = new javax.swing.JLabel();
+        cbLimpeza = new javax.swing.JLabel();
+        jPanel3 = new RoundedPanel(100);
+        jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,7 +75,7 @@ public class roomsScreen extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1000, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -55,55 +83,6 @@ public class roomsScreen extends javax.swing.JFrame {
         );
 
         jPanel2.setBackground(new java.awt.Color(224, 224, 224));
-
-        boxLivres.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
-        boxLivres.setText("Quartos livres");
-        boxLivres.setBorder(null);
-        boxLivres.setContentAreaFilled(false);
-        boxLivres.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        boxLivres.setFocusPainted(false);
-        boxLivres.setName(""); // NOI18N
-        boxLivres.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxLivresActionPerformed(evt);
-            }
-        });
-
-        boxOcupados.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
-        boxOcupados.setText("Quartos ocupados");
-        boxOcupados.setBorder(null);
-        boxOcupados.setContentAreaFilled(false);
-        boxOcupados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        boxOcupados.setFocusPainted(false);
-        boxOcupados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxOcupadosActionPerformed(evt);
-            }
-        });
-
-        boxLimpeza.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
-        boxLimpeza.setText("Em limpeza / manutenção");
-        boxLimpeza.setBorder(null);
-        boxLimpeza.setContentAreaFilled(false);
-        boxLimpeza.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        boxLimpeza.setFocusPainted(false);
-        boxLimpeza.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxLimpezaActionPerformed(evt);
-            }
-        });
-
-        boxReservados.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
-        boxReservados.setText("Quartos reservados");
-        boxReservados.setBorder(null);
-        boxReservados.setContentAreaFilled(false);
-        boxReservados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        boxReservados.setFocusPainted(false);
-        boxReservados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boxReservadosActionPerformed(evt);
-            }
-        });
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -118,7 +97,7 @@ public class roomsScreen extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                .addComponent(jTextField2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1))
         );
@@ -130,46 +109,107 @@ public class roomsScreen extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        cbLivre.setFont(new java.awt.Font("Corbel", 0, 22)); // NOI18N
+        cbLivre.setForeground(new java.awt.Color(51, 51, 51));
+        cbLivre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/checkDesmarcado.png"))); // NOI18N
+        cbLivre.setText(" Somente livres");
+        cbLivre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbLivreMouseClicked(evt);
+            }
+        });
+
+        cbOcupado.setFont(new java.awt.Font("Corbel", 0, 22)); // NOI18N
+        cbOcupado.setForeground(new java.awt.Color(51, 51, 51));
+        cbOcupado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/checkDesmarcado.png"))); // NOI18N
+        cbOcupado.setText(" Somente ocupados");
+        cbOcupado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbOcupadoMouseClicked(evt);
+            }
+        });
+
+        cbReservado.setFont(new java.awt.Font("Corbel", 0, 22)); // NOI18N
+        cbReservado.setForeground(new java.awt.Color(51, 51, 51));
+        cbReservado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/checkDesmarcado.png"))); // NOI18N
+        cbReservado.setText(" Somente reservados");
+        cbReservado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbReservadoMouseClicked(evt);
+            }
+        });
+
+        cbLimpeza.setFont(new java.awt.Font("Corbel", 0, 22)); // NOI18N
+        cbLimpeza.setForeground(new java.awt.Color(51, 51, 51));
+        cbLimpeza.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/checkDesmarcado.png"))); // NOI18N
+        cbLimpeza.setText(" Somente limpeza/manutenção");
+        cbLimpeza.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbLimpezaMouseClicked(evt);
+            }
+        });
+
+        jPanel3.setOpaque(false);
+        jPanel3.setBackground(new java.awt.Color(79, 79, 79));
+        jPanel3.setLayout(new java.awt.BorderLayout());
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/SetaBack.png"))); // NOI18N
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
+        jPanel3.add(jLabel2, java.awt.BorderLayout.CENTER);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(boxLivres, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(boxOcupados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(boxReservados, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(boxLimpeza, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 12, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbLivre)
+                            .addComponent(cbOcupado)
+                            .addComponent(cbReservado)
+                            .addComponent(cbLimpeza, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(11, 11, 11)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(boxLivres)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(boxOcupados)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(boxReservados)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(boxLimpeza)
-                .addContainerGap(304, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(cbLivre)
+                .addGap(18, 18, 18)
+                .addComponent(cbOcupado)
+                .addGap(18, 18, 18)
+                .addComponent(cbReservado)
+                .addGap(18, 18, 18)
+                .addComponent(cbLimpeza)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 670, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 508, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -187,49 +227,40 @@ public class roomsScreen extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         setSize(new java.awt.Dimension(1016, 639));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void boxLivresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxLivresActionPerformed
+    private void cbLivreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbLivreMouseClicked
         // TODO add your handling code here:
-        if(boxLivres.isSelected()){
-            boxOcupados.setSelected(false);
-            boxReservados.setSelected(false);
-            boxLimpeza.setSelected(false);
-        }
-    }//GEN-LAST:event_boxLivresActionPerformed
+        Checkbox("livre");
+    }//GEN-LAST:event_cbLivreMouseClicked
 
-    private void boxOcupadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxOcupadosActionPerformed
+    private void cbOcupadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbOcupadoMouseClicked
         // TODO add your handling code here:
-        if(boxOcupados.isSelected()){
-            boxLivres.setSelected(false);
-            boxReservados.setSelected(false);
-            boxLimpeza.setSelected(false);
-        }
-    }//GEN-LAST:event_boxOcupadosActionPerformed
+        Checkbox("ocupado");
+    }//GEN-LAST:event_cbOcupadoMouseClicked
 
-    private void boxReservadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxReservadosActionPerformed
+    private void cbReservadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbReservadoMouseClicked
         // TODO add your handling code here:
-        if(boxReservados.isSelected()){
-            boxLivres.setSelected(false);
-            boxOcupados.setSelected(false);
-            boxLimpeza.setSelected(false);
-        }
-    }//GEN-LAST:event_boxReservadosActionPerformed
+        Checkbox("reservado");
+    }//GEN-LAST:event_cbReservadoMouseClicked
 
-    private void boxLimpezaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxLimpezaActionPerformed
+    private void cbLimpezaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbLimpezaMouseClicked
         // TODO add your handling code here:
-        if(boxLimpeza.isSelected()){
-            boxLivres.setSelected(false);
-            boxOcupados.setSelected(false);
-            boxReservados.setSelected(false);
-        }
-    }//GEN-LAST:event_boxLimpezaActionPerformed
+        Checkbox("limpeza");
+    }//GEN-LAST:event_cbLimpezaMouseClicked
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        homeScreen hs = new homeScreen();
+        hs.setVisible(true);
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -265,15 +296,67 @@ public class roomsScreen extends javax.swing.JFrame {
             }
         });
     }
+    
+    class RoundedPanel extends JPanel
+    {
+        private Color backgroundColor;
+        private int cornerRadius = 0;
+
+        public RoundedPanel(LayoutManager layout, int radius) {
+            super(layout);
+            cornerRadius = radius;
+        }
+
+        public RoundedPanel(LayoutManager layout, int radius, Color bgColor) {
+            super(layout);
+            cornerRadius = radius;
+            backgroundColor = bgColor;
+        }
+
+        public RoundedPanel(int radius) {
+            super();
+            cornerRadius = radius;
+        }
+
+        public RoundedPanel(int radius, Color bgColor) {
+            super();
+            cornerRadius = radius;
+            backgroundColor = bgColor;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Dimension arcs = new Dimension(cornerRadius, cornerRadius);
+            int width = getWidth();
+            int height = getHeight();
+            Graphics2D graphics = (Graphics2D) g;
+            graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+            //Draws the rounded panel with borders.
+            if (backgroundColor != null) {
+                graphics.setColor(backgroundColor);
+            } else {
+                graphics.setColor(getBackground());
+            }
+            graphics.fillRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height); //paint background
+            //graphics.setColor(getForeground());
+            graphics.drawRoundRect(0, 0, width-1, height-1, arcs.width, arcs.height); //paint border
+        }
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox boxLimpeza;
-    private javax.swing.JCheckBox boxLivres;
-    private javax.swing.JCheckBox boxOcupados;
-    private javax.swing.JCheckBox boxReservados;
+    private javax.swing.JLabel cbLimpeza;
+    private javax.swing.JLabel cbLivre;
+    private javax.swing.JLabel cbOcupado;
+    private javax.swing.JLabel cbReservado;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField jTextField2;
