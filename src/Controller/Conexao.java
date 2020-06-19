@@ -15,7 +15,8 @@ import java.sql.SQLException;
  */
 public class Conexao {
 
-   private static final String host = "localhost";
+    // comentario teste 
+    private static final String host = "localhost";
     private static String database = "bd_fisico1";
     private static String usuario = "root";
     private static String senha = "";
