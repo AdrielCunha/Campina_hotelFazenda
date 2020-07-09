@@ -17,7 +17,7 @@ public class Conexao {
 
     // comentario teste 
     private static final String host = "localhost";
-    private static String database = "bd_fisico1";
+    private static String database = "hotel";
     private static String usuario = "root";
     private static String senha = "";
     private static String url = "jdbc:mysql://" + host + "/" + database;
