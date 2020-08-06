@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package View;
+import Controller.LoginController;
 import java.awt.*;
 import javax.swing.*;
 
@@ -154,9 +155,28 @@ public class loginScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         btnSingin.setBackground(new Color(243, 202, 62)); 
         
-        homeScreen hs = new homeScreen();
-        hs.setVisible(true);
-        this.setVisible(false);
+        try {
+            //conexao com o Login Controller
+            LoginController lc = new LoginController();
+        
+            //atribuição do valor do text box às variáveis
+            String usuario = txtUsername.getText();
+            String senha = txtPassword.getPassword().toString();
+        
+            //validação do usuario e senha
+            if (lc.logar(usuario, senha) != null){
+                homeScreen hs = new homeScreen();
+                hs.setVisible(true);
+                this.setVisible(false);
+            } else {
+                throw new Exception ("Falha ao logar!");
+            }
+            
+        } catch (Exception e){
+            
+        }
+        
+        
     }//GEN-LAST:event_btnSinginMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
